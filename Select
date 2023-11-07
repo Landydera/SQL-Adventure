@@ -1,0 +1,64 @@
+// 1-2
+/*select * from "TIL_SAMPLE_DATA"."SUPERSTORE_NORMALISED"."V_SUPERSTORE"
+where  "Region" in ('North') 
+and "Profit" > 200
+*/
+
+/**select distinct "Product ID", "Region", "Sales"
+from "TIL_SAMPLE_DATA"."SUPERSTORE_NORMALISED"."V_SUPERSTORE"
+where "Region" in ('South') or "Region" in ('Central')
+and "Sales" > 200 and 
+"Sales" < 300
+**/
+
+// ex 14
+select* from "TIL_PLAYGROUND"."SQL_COURSE"."ORDERS" as a 
+inner join 
+ "TIL_PLAYGROUND"."SQL_COURSE"."RETURNED_ORDERS" as b 
+ on a."ORDER_ID" = b."ORDER_ID" ;
+ 
+ //left join
+ select* from "TIL_PLAYGROUND"."SQL_COURSE"."ORDERS" as a 
+left join 
+ "TIL_PLAYGROUND"."SQL_COURSE"."RETURNED_ORDERS" as b 
+ on a."ORDER_ID" = b."ORDER_ID" ;
+ //right join
+ select* from "TIL_PLAYGROUND"."SQL_COURSE"."ORDERS" as a 
+right join 
+ "TIL_PLAYGROUND"."SQL_COURSE"."RETURNED_ORDERS" as b 
+ on a."ORDER_ID" = b."ORDER_ID" ;
+ 
+ //ex 15 part 1
+ 
+ select* from "TIL_PLAYGROUND"."SQL_COURSE"."CUSTOMERS" as c
+ left join
+ "TIL_PLAYGROUND"."SQL_COURSE"."CUSTOMER_SALES_REP" as d
+ on c."CUSTOMER_ID"= d."CUSTOMER_ID"
+ where d."SALES_PERSON_FULLNAME" is null
+ order by c."CUSTOMER_ID";
+ 
+ // ex 15.2: count of customer with no sales rep
+ select count(*) as no_sales_rep 
+ from "TIL_PLAYGROUND"."SQL_COURSE"."CUSTOMERS" as c
+ left join
+ "TIL_PLAYGROUND"."SQL_COURSE"."CUSTOMER_SALES_REP" as d
+ on c."CUSTOMER_ID"= d."CUSTOMER_ID"
+ 
+ where d."CUSTOMER_ID" is null
+ 
+  // ex 15.2: count of customer with no sales rep
+  
+ select*
+/*
+ case 
+ when "TIL_PLAYGROUND"."SQL_COURSE"."CUSTOMERS"."CUSTOMER_ID" is not null
+ then 'with sales rep'
+ else 'with no sales rep'
+ end as "sales rep status"
+ */
+   from 
+  "TIL_PLAYGROUND"."SQL_COURSE"."CUSTOMERS"as a
+ left join
+ "TIL_PLAYGROUND"."SQL_COURSE"."CUSTOMER_SALES_REP" as d
+ on a."CUSTOMER_ID"= d."CUSTOMER_ID"
+ 
